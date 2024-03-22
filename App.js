@@ -16,7 +16,7 @@ export default function App() {
 
 <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: '#e91e63',
+        activeTintColor: 'rgba(0,0,0,0.808)',
         inactiveTintColor: 'gray',
         style: {
           backgroundColor: '#ffffff', // Background color of the tab bar
@@ -88,7 +88,7 @@ export default function App() {
         options={{
           tabBarLabel: 'Admin',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="settings-outline" color={color} size={size} /> // Icon for Admin tab
+            <Icon name="person-circle-outline" color={color} size={size} /> // Icon for Admin tab
           ),
         }}
       />
