@@ -125,7 +125,6 @@ const Home = () => {
                                 withAlphaFilter
                                 onSelect={(country) => setSelectedCountry(country)}
                                 countryCode={selectedCountry?.cca2}
-                                visible
                             />
                         </View>
                         <View style={styles.input}>
@@ -197,11 +196,13 @@ const styles = StyleSheet.create({
         zIndex: 2,
     },
     formContainer: {
-        borderColor: 'black',
         borderWidth: 2,
+        borderRadius: 5,
         flex: 1,
         flexDirection: 'column',
         margin: 30,
+        shadowColor: 'black',
+        elevation: 1,
     },
     formHeading: {
         textAlign: 'center',
