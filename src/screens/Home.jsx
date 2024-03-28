@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Picker } from '@react-native-picker/picker';
 import CountryPicker from 'react-native-country-picker-modal';
+import { RadioButton } from 'react-native-paper';
 
 const GradientText = ({ colors, style, children }) => {
     return (
@@ -49,9 +50,14 @@ const Home = () => {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [course, setCourse] = useState('');
-    // const [enrollmentType, setEnrollmentType] = useState('child');
+    const [enrollmentType, setEnrollmentType] = useState('');
     const [message, setMessage] = useState('');
+    
 
+    const handleEnrollmentSelection = (value) => {
+        setEnrollmentType(value);
+    };
+    
     const handleSubmit = () => {
         // Handle form submission here
         console.log('Form submitted!');
@@ -61,6 +67,7 @@ const Home = () => {
         console.log(phoneNumber)
         console.log(course)
         console.log(message)
+        console.log('Selected Enrollment Type:', enrollmentType);
 
         setName('');
         setEmail('');
@@ -68,6 +75,7 @@ const Home = () => {
         setPhoneNumber('');
         setCourse('');
         setMessage('');
+        setEnrollmentType('');
     };
 
     return (
@@ -152,9 +160,37 @@ const Home = () => {
                                 <Picker.Item label="Quranic Arabic Grammar" value="Quranic Arabic Grammar" />
                             </Picker>
                         </View>
-
-                        <View>
-                            {/* Radio buttons */}
+                        {/* radio buttons */}
+                        <View style={styles.radioButtonContainer}>
+                            <Text>I want to Enroll For</Text>
+                            {/* for my self */}
+                            <TouchableOpacity
+                                onPress={() => handleEnrollmentSelection('for my self')}
+                            >
+                                <View style={styles.radioButton}>
+                                    <RadioButton
+                                        value="for my self"
+                                        status={enrollmentType === 'for my self' ? 'checked' : 'unchecked'}
+                                        onPress={() => handleEnrollmentSelection('for my self')}
+                                        color="#009688" // Customize the selected color
+                                    />
+                                    <Text>for my self</Text>
+                                </View>
+                            </TouchableOpacity>
+                            {/* for my kid */}
+                            <TouchableOpacity
+                                onPress={() => handleEnrollmentSelection('for my kid')}
+                            >
+                                <View style={styles.radioButton}>
+                                    <RadioButton
+                                        value="for my kid"
+                                        status={enrollmentType === 'for my kid' ? 'checked' : 'unchecked'}
+                                        onPress={() => handleEnrollmentSelection('for my kid')}
+                                        color="#009688" // Customize the selected color
+                                    />
+                                    <Text style={styles.label}>For my kid</Text>
+                                </View>
+                            </TouchableOpacity>
                         </View>
 
                         <TextInput
