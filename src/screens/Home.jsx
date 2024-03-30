@@ -1,23 +1,12 @@
 import { Animated, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
-import { LinearGradient } from 'expo-linear-gradient'
-import MaskedView from '@react-native-masked-view/masked-view';
 import { Picker } from '@react-native-picker/picker';
 import CountryPicker from 'react-native-country-picker-modal';
 import { RadioButton } from 'react-native-paper';
+import GradientText from '../components/commons/GradientText';
+import PhoneInput from 'react-native-phone-number-input';
 
-const GradientText = ({ colors, style, children }) => {
-    return (
-        <MaskedView maskElement={<Text style={style}>{children}</Text>}>
-            <LinearGradient
-                colors={colors}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}>
-                <Text style={[style, { opacity: 0 }]}>{children}</Text>
-            </LinearGradient>
-        </MaskedView>
-    );
-};
+
 
 
 const Home = () => {
@@ -47,32 +36,41 @@ const Home = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [selectedCountry, setSelectedCountry] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [selectedCountry, setSelectedCountry] = useState(null);
+    const [phoneNumber, setPhoneNumber] = useState();
     const [course, setCourse] = useState('');
     const [enrollmentType, setEnrollmentType] = useState('');
     const [message, setMessage] = useState('');
-    
+
 
     const handleEnrollmentSelection = (value) => {
         setEnrollmentType(value);
     };
-    
+
     const handleSubmit = () => {
+
+        if (!name || !email || !selectedCountry || !phoneNumber || !course || !enrollmentType || !message) {
+            // Display an error message or handle the error accordingly
+            console.log('Please fill in all fields.');
+            return; // Prevent form submission
+        }
+
         // Handle form submission here
-        console.log('Form submitted!');
-        console.log(name)
-        console.log(email)
-        console.log(selectedCountry)
-        console.log(phoneNumber)
-        console.log(course)
-        console.log(message)
-        console.log('Selected Enrollment Type:', enrollmentType);
+        else {
+            console.log('Form submitted!');
+            console.log(name)
+            console.log(email)
+            console.log(selectedCountry)
+            console.log(phoneNumber)
+            console.log(course)
+            console.log(message)
+            console.log('Selected Enrollment Type:', enrollmentType);
+        }
 
         setName('');
         setEmail('');
-        setSelectedCountry('');
-        setPhoneNumber('');
+        setSelectedCountry(null);
+        setPhoneNumber();
         setCourse('');
         setMessage('');
         setEnrollmentType('');
@@ -129,21 +127,30 @@ const Home = () => {
                             <CountryPicker
                                 withFilter
                                 withFlag
-                                withCountryNameButton
-                                withAlphaFilter
+                                withCountryNameButton={selectedCountry ? true : false}
+                                withEmoji
                                 onSelect={(country) => setSelectedCountry(country)}
                                 countryCode={selectedCountry?.cca2}
                             />
                         </View>
-                        <View style={styles.input}>
-                            <TextInput
-                                style={styles.phoneInput}
-                                placeholder="Phone Number"
-                                value={phoneNumber}
-                                onChangeText={setPhoneNumber}
-                                keyboardType="phone-pad"
-                            />
-                        </View>
+
+                        <PhoneInput
+                            defaultCode="PK"
+                            value={phoneNumber}
+                            onChangeText={(number) => setPhoneNumber(number)}
+                            containerStyle={{ margin: 5, width: '97%', borderColor: 'white', borderWidth: 2, borderRadius: 7 }}
+                            textContainerStyle={{
+                                backgroundColor: 'rgb(55, 65, 81)',
+                                borderLeftColor: 'rgb(0,0,0)',
+                                borderLeftWidth: 1,
+                            }}
+                            textStyle={{
+                                color: '#CBD5E0',
+                            }}
+                            flagButtonStyle={{ backgroundColor: 'rgb(55, 65, 81)' }}
+                            textInputProps={{ keyboardType: 'phone-pad' }}
+                        />
+
                         <View style={styles.input}>
                             <Picker
                                 selectedValue={course}
