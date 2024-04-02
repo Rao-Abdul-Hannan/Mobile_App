@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import CountryPicker from 'react-native-country-picker-modal';
 import { RadioButton } from 'react-native-paper';
-import GradientText from '../components/commons/GradientText';
+import {GradientText} from '../components/commons/GradientText';
 import PhoneInput from 'react-native-phone-number-input';
 
 

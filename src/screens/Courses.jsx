@@ -1,16 +1,25 @@
-import { Animated, FlatList, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Animated, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef } from 'react'
-import dummyCourses from '../serivces/dummyCourses'
+import { dummyCourses } from '../serivces/dummyCourses'
+import { useNavigation } from '@react-navigation/native';
 
 const Courses = () => {
 
+    const navigation = useNavigation();
+
+    const handleCardPress = (course) => {
+        navigation.navigate('CourseDetail', { course });
+    };
+
     const renderItem = ({ item }) =>
     (
-        <View style={styles.card}>
-            <Image source={{ uri: item.img }} style={styles.image} />
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-        </View>
+        <TouchableOpacity onPress={() => handleCardPress(item)}>
+            <View style={styles.card}>
+                <Image source={{ uri: item.img }} style={styles.image} />
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.description}>{item.description}</Text>
+            </View>
+        </TouchableOpacity>
     );
 
 
@@ -33,7 +42,7 @@ const Courses = () => {
                     </Animated.View>
                     <Text style={{ color: 'rgb(229, 231, 235)', textAlign: 'center', fontSize: 15, padding: 15 }}>At our educational institution, we are committed to providing a diverse selection of internet-based courses tailored to meet the requirements of contemporary learners. Our web-based courses offer a flexible, easily accessible, and inclusive approach to education, enabling individuals to pursue their learning journey from any location worldwide, at their convenience.</Text>
                 </View>
-                <View>
+                <View style={{ flex: 1 }}>
                     <FlatList data={dummyCourses} renderItem={renderItem} />
                 </View>
             </View>
@@ -45,6 +54,7 @@ export default Courses
 
 const styles = StyleSheet.create({
     card: {
+        flex: 1,
         backgroundColor: 'rgba(255,255,255,0.5)',
         borderRadius: 8,
         padding: 16,

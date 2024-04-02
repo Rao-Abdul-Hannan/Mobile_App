@@ -2,12 +2,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer, StackRouter } from '@react-navigation/native';
 import Home from './src/screens/Home';
-import Courses from './src/screens/Courses';
 import About from './src/screens/About';
 import Faculty from './src/screens/Faculty';
 import Contact from './src/screens/Contact';
 import Admin from './src/screens/Admin';
 import Icon from 'react-native-vector-icons/Ionicons';
+import CoursesStack from './src/screens/CoursesStack';
+
+
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -43,7 +45,7 @@ export default function App() {
         />
         <Tab.Screen
           name='Courses'
-          component={Courses}
+          component={CoursesStack}
           options={{
             tabBarLabel: 'Courses',
             tabBarIcon: ({ color, size }) => (
