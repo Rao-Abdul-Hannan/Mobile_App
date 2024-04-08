@@ -9,8 +9,6 @@ import Admin from './src/screens/Admin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CoursesStack from './src/screens/CoursesStack';
 
-
-
 export default function App() {
   const Tab = createBottomTabNavigator();
   return (
@@ -44,9 +42,10 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name='Courses'
+          name='Course Stack'
           component={CoursesStack}
           options={{
+            headerShown: false,
             tabBarLabel: 'Courses',
             tabBarIcon: ({ color, size }) => (
               <Icon name="book-outline" color={color} size={size} /> // Icon for Courses tab

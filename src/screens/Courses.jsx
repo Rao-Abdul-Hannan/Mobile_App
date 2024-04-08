@@ -8,7 +8,7 @@ const Courses = () => {
     const navigation = useNavigation();
 
     const handleCardPress = (course) => {
-        navigation.navigate('CourseDetail', { course });
+        navigation.navigate('Course Detail', { course });
     };
 
     const renderItem = ({ item }) =>
