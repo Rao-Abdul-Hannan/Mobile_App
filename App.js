@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet } from 'react-native';
-import { NavigationContainer, StackRouter } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import Home from './src/screens/Home';
 import About from './src/screens/About';
 import Faculty from './src/screens/Faculty';
@@ -9,94 +8,52 @@ import Admin from './src/screens/Admin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CoursesStack from './src/screens/CoursesStack';
 
+const Tab = createBottomTabNavigator();
+
 export default function App() {
-  const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
       <Tab.Navigator
-        tabBarOptions={{
-          activeTintColor: 'rgba(0,0,0,0.808)',
-          inactiveTintColor: 'gray',
-          style: {
-            backgroundColor: '#ffffff', // Background color of the tab bar
+        screenOptions={({ route }) => ({
+          tabBarActiveTintColor: 'rgba(0,0,0,0.808)',
+          tabBarInactiveTintColor: 'gray',
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontWeight: 'bold',
+          },
+          tabBarStyle: {
+            backgroundColor: '#ffffff',
             borderTopWidth: 1,
-            borderTopColor: '#cccccc', // Top border color of the tab bar
+            borderTopColor: '#cccccc',
+            paddingBottom: 5,
+            paddingTop: 1,
           },
-          labelStyle: {
-            fontSize: 12, // Font size of the tab labels
-            fontWeight: 'bold', // Font weight of the tab labels
+          tabBarIcon: ({ color, size }) => {
+            let iconName;
+            if (route.name === 'Home') {
+              iconName = 'home-outline';
+            } else if (route.name === 'Course Stack') {
+              iconName = 'book-outline';
+            } else if (route.name === 'About') {
+              iconName = 'information-circle-outline';
+            } else if (route.name === 'Faculty') {
+              iconName = 'people-outline';
+            } else if (route.name === 'Contact') {
+              iconName = 'call-outline';
+            } else if (route.name === 'Admin') {
+              iconName = 'person-circle-outline';
+            }
+            return <Icon name={iconName} color={color} size={size} />;
           },
-          tabStyle: {
-            paddingBottom: 5, // Padding bottom of each tab
-            paddingTop: 1, // Padding top of each tab
-          },
-        }}>
-        <Tab.Screen
-          name='Home'
-          component={Home}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="home-outline" color={color} size={size} /> // Icon for Home tab
-            ),
-          }}
-        />
-        <Tab.Screen
-          name='Course Stack'
-          component={CoursesStack}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'Courses',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="book-outline" color={color} size={size} /> // Icon for Courses tab
-            ),
-          }}
-        />
-        <Tab.Screen
-          name='About'
-          component={About}
-          options={{
-            tabBarLabel: 'About',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="information-circle-outline" color={color} size={size} /> // Icon for About tab
-            ),
-          }}
-        />
-        <Tab.Screen
-          name='Faculty'
-          component={Faculty}
-          options={{
-            tabBarLabel: 'Faculty',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="people-outline" color={color} size={size} /> // Icon for Faculty tab
-            ),
-          }}
-        />
-        <Tab.Screen
-          name='Contact'
-          component={Contact}
-          options={{
-            tabBarLabel: 'Contact',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="call-outline" color={color} size={size} /> // Icon for Contact tab
-            ),
-          }}
-        />
-        <Tab.Screen
-          name='Admin'
-          component={Admin}
-          options={{
-            tabBarLabel: 'Admin',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="person-circle-outline" color={color} size={size} /> // Icon for Admin tab
-            ),
-          }}
-        />
+        })}
+      >
+        <Tab.Screen name='Home' component={Home} />
+        <Tab.Screen name='Course Stack' component={CoursesStack} options={{ headerShown: false }} />
+        <Tab.Screen name='About' component={About} />
+        <Tab.Screen name='Faculty' component={Faculty} />
+        <Tab.Screen name='Contact' component={Contact} />
+        <Tab.Screen name='Admin' component={Admin} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-
-});
