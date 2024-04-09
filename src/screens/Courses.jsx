@@ -1,4 +1,4 @@
-import { Animated, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { dummyCourses } from '../serivces/dummyCourses';
 import { useNavigation } from '@react-navigation/native';
@@ -16,6 +16,9 @@ const Courses = () => {
                 <Image source={{ uri: item.img }} style={styles.image} />
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.description}>{item.description}</Text>
+                <TouchableOpacity style={styles.readMoreButton} onPress={() => handleCardPress(item)}>
+                    <Text style={styles.readMoreText}>Read More</Text>
+                </TouchableOpacity>
             </View>
         </TouchableOpacity>
     );
@@ -23,7 +26,7 @@ const Courses = () => {
     const animLeft = useRef(new Animated.Value(-500)).current;
     const [upperFlex, setUpperFlex] = useState(1);
     const [paragraphVisible, setParagraphVisible] = useState(true);
-    
+
     const handleScroll = (event) => {
         const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
         const scrollY = contentOffset.y;
@@ -105,10 +108,16 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: 'black',
     },
+
+    readMoreButton: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Opaque background color
+        padding: 10,
+        borderRadius: 8,
+        marginTop: 10,
+    },
     readMoreText: {
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
-        backgroundColor: 'red'
     },
 });

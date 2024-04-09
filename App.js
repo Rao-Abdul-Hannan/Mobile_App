@@ -7,6 +7,7 @@ import Contact from './src/screens/Contact';
 import Admin from './src/screens/Admin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CoursesStack from './src/screens/CoursesStack';
+import MyHeader from './src/views/MyHeader';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +29,9 @@ export default function App() {
             paddingBottom: 5,
             paddingTop: 1,
           },
+          header: ({ navigation }) => (
+            <MyHeader title='Islamic Center WorldWide'/>
+          ),
           tabBarIcon: ({ color, size }) => {
             let iconName;
             if (route.name === 'Home') {
@@ -48,7 +52,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name='Home' component={Home} />
-        <Tab.Screen name='Course Stack' component={CoursesStack} options={{ headerShown: false }} />
+        <Tab.Screen name='Course Stack' component={CoursesStack} />
         <Tab.Screen name='About' component={About} />
         <Tab.Screen name='Faculty' component={Faculty} />
         <Tab.Screen name='Contact' component={Contact} />
