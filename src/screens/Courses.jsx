@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { dummyCourses } from '../serivces/dummyCourses';
 import { useNavigation } from '@react-navigation/native';
 import handleScroll from '../utils/scroll/handleScroll';
+import RenderCourseCards from '../views/coursesViews/RenderCourseCards';
 
 const Courses = () => {
     const navigation = useNavigation();
@@ -11,18 +12,6 @@ const Courses = () => {
         navigation.navigate('Course Detail', { course });
     };
 
-    const renderItem = ({ item }) => (
-        <TouchableOpacity onPress={() => handleCardPress(item)}>
-            <View style={styles.card}>
-                <Image source={{ uri: item.img }} style={styles.image} />
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.description}>{item.description}</Text>
-                <TouchableOpacity style={styles.readMoreButton} onPress={() => handleCardPress(item)}>
-                    <Text style={styles.readMoreText}>Read More</Text>
-                </TouchableOpacity>
-            </View>
-        </TouchableOpacity>
-    );
 
     const animLeft = useRef(new Animated.Value(-500)).current;
     const [upperFlex, setUpperFlex] = useState(1);
@@ -56,7 +45,7 @@ const Courses = () => {
             <View style={{ flex: 1 }}>
                 <FlatList
                     data={dummyCourses}
-                    renderItem={renderItem}
+                    renderItem={RenderCourseCards}
                     onScroll={onScroll} // Use onScroll instead of handleScroll directly
                     scrollEventThrottle={16} // Adjust the throttle value as needed
                 />
