@@ -8,22 +8,15 @@ const Home = () => {
     return (
         <ScrollView>
             <View style={styles.mainContainer}>
-
                 {/* top headings start */}
-
                 <TopHeadings />
-
                 {/* top headings end */}
 
                 {/* form starts */}
-
                 <StudentRegistrationForm />
-
                 {/* form ends */}
 
-                
             </View>
-
         </ScrollView>
     )
 }

@@ -2,6 +2,7 @@ import { Animated, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } f
 import React, { useEffect, useRef, useState } from 'react';
 import { dummyCourses } from '../serivces/dummyCourses';
 import { useNavigation } from '@react-navigation/native';
+import handleScroll from '../utils/scroll/handleScroll';
 
 const Courses = () => {
     const navigation = useNavigation();
@@ -26,23 +27,12 @@ const Courses = () => {
     const animLeft = useRef(new Animated.Value(-500)).current;
     const [upperFlex, setUpperFlex] = useState(1);
     const [paragraphVisible, setParagraphVisible] = useState(true);
-
-    const handleScroll = (event) => {
-        const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
-        const scrollY = contentOffset.y;
-        // console.log(scrollY) // 130
-        const scrollHeight = contentSize.height;
-        // console.log(scrollHeight) // 3094
-        const screenHeight = layoutMeasurement.height;
-        // console.log(screenHeight) // 400
-        const maxScroll = scrollHeight - screenHeight;
-        // console.log(maxScroll) // 2700
-        const scrollFraction = maxScroll > 0 ? scrollY / maxScroll : 0;
-        // console.log(scrollFraction) // 0.02 and decreasing when scroll up
-        const newFlex = 1 - scrollFraction * 5; // Adjust the multiplier to control the rate of flex decrease
-        setUpperFlex(newFlex < 0.15 ? 0.15 : newFlex); // Ensure upperFlex does not go below 0.25
-        setParagraphVisible(scrollY <= 0); // Hide paragraph content when scrolling up
+    
+    // scroll flex
+    const onScroll = (event) => {
+        handleScroll(event, setUpperFlex, setParagraphVisible);
     };
+    
 
     useEffect(() => {
         Animated.timing(animLeft, {
@@ -67,7 +57,7 @@ const Courses = () => {
                 <FlatList
                     data={dummyCourses}
                     renderItem={renderItem}
-                    onScroll={handleScroll}
+                    onScroll={onScroll} // Use onScroll instead of handleScroll directly
                     scrollEventThrottle={16} // Adjust the throttle value as needed
                 />
             </View>
