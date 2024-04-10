@@ -6,22 +6,22 @@ import handleScroll from '../utils/scroll/handleScroll';
 import RenderCourseCards from '../views/coursesViews/RenderCourseCards';
 
 const Courses = () => {
+    // hooks
     const navigation = useNavigation();
+    const animLeft = useRef(new Animated.Value(-500)).current;
+    // state variables
+    const [upperFlex, setUpperFlex] = useState(1);
+    const [paragraphVisible, setParagraphVisible] = useState(true);
 
+    // funtion to navigate dynamically
     const handleCardPress = (course) => {
         navigation.navigate('Course Detail', { course });
     };
-
-
-    const animLeft = useRef(new Animated.Value(-500)).current;
-    const [upperFlex, setUpperFlex] = useState(1);
-    const [paragraphVisible, setParagraphVisible] = useState(true);
-    
-    // scroll flex
-    const onScroll = (event) => {
+    // function to shrink flex upon scroll
+    const handleFlexShrink = (event) => {
         handleScroll(event, setUpperFlex, setParagraphVisible);
     };
-    
+
 
     useEffect(() => {
         Animated.timing(animLeft, {
@@ -45,8 +45,8 @@ const Courses = () => {
             <View style={{ flex: 1 }}>
                 <FlatList
                     data={dummyCourses}
-                    renderItem={RenderCourseCards}
-                    onScroll={onScroll} // Use onScroll instead of handleScroll directly
+                    renderItem={({ item }) => RenderCourseCards({ item, handleCardPress })}
+                    onScroll={handleFlexShrink} // Use onScroll instead of handleScroll directly
                     scrollEventThrottle={16} // Adjust the throttle value as needed
                 />
             </View>
@@ -56,47 +56,4 @@ const Courses = () => {
 
 export default Courses;
 
-const styles = StyleSheet.create({
-    card: {
-        flex: 1,
-        backgroundColor: 'rgba(255,255,255,0.5)',
-        borderRadius: 8,
-        padding: 16,
-        margin: 16,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    image: {
-        width: '100%',
-        height: 200,
-        borderRadius: 8,
-        marginBottom: 12,
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 8,
-    },
-    description: {
-        fontSize: 16,
-        color: 'black',
-    },
-
-    readMoreButton: {
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Opaque background color
-        padding: 10,
-        borderRadius: 8,
-        marginTop: 10,
-    },
-    readMoreText: {
-        color: 'white',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-});
+const styles = StyleSheet.create({});

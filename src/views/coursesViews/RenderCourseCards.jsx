@@ -1,7 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const RenderCourseCards = ({ item }) => {
+
+const RenderCourseCards = ({ item, handleCardPress }) => {
+    
     return (
         <TouchableOpacity onPress={() => handleCardPress(item)}>
             <View style={styles.card}>
