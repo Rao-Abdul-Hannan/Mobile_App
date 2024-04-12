@@ -1,17 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import View3OurFaculty from './View3OurFaculty'
 import View5OurFemaleFaculty from './View5OurFemaleFaculty'
+import azeemPhoto from '../../../assets/Images/azeem/azeem.jpeg'
+import quranImage from '../../../assets/Images/quran.jpg'
+
 const View1FacultyView = () => {
     return (
         <>
             {/* Molana Muhammad Azeem */}
             <View style={styles.bgContainer}>
                 <View style={styles.photoContainer}>
-                    {/* <Image
-                        source={{uri: '../../assets/Images/favicon_io/android-chrome-192x192.png'}}
+                    <Image
+                        source={azeemPhoto}
                         style={styles.image}
-                    /> */}
+                    />
                     <View style={styles.titleContainer}>
                         <Text style={styles.title}>Molana Muhammad Azeem</Text>
                     </View>
@@ -22,10 +25,10 @@ const View1FacultyView = () => {
             {/* female faculty */}
             <View style={[styles.bgContainer, styles.femaleBg]}>
                 <View style={styles.photoContainer}>
-                    {/* <Image
-                        source={require('../assets/photos/quran.jpg')}
+                    <Image
+                        source={quranImage}
                         style={styles.image}
-                    /> */}
+                    />
                     <View style={styles.titleContainer}>
                         <Text style={styles.title}>Islamic Center WoldWide</Text>
                     </View>
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
     bgContainer: {
         backgroundColor: '#1E90FF',
         paddingVertical: 16,
-        flexDirection: 'row',
+        flexDirection: 'column',
     },
     femaleBg: {
         backgroundColor: '#FF69B4',
