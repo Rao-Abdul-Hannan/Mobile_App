@@ -1,5 +1,5 @@
 import { Animated, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import View2GetInTouch from '../views/contactViews/View2GetInTouch ';
 import View3ContactUsForm from '../views/contactViews/View3ContactUsForm';
@@ -26,8 +26,8 @@ const Contact = () => {
                     </Animated.View>
                 </View>
                 {/* translate the code of Next.js component wise */}
-                <View2GetInTouch/>
-                <View3ContactUsForm/>
+                <View3ContactUsForm />
+                <View2GetInTouch />
             </LinearGradient>
         </ScrollView>
     )
@@ -38,6 +38,12 @@ export default Contact
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginTop: 20,
+        color: 'rgb(234,179,8)',
     },
     content: {
         flex: 1,

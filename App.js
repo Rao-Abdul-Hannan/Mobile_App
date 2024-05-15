@@ -5,9 +5,9 @@ import About from './src/screens/About';
 import Faculty from './src/screens/Faculty';
 import Contact from './src/screens/Contact';
 import Admin from './src/screens/Admin';
-import Icon from 'react-native-vector-icons/Ionicons';
 import CoursesStack from './src/screens/CoursesStack';
 import MyHeader from './src/views/MyHeader';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 

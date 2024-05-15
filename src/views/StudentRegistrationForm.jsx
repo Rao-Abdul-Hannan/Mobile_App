@@ -158,7 +158,7 @@ const StudentRegistrationForm = () => {
                     value={studentRegistration.message}
                     onChangeText={(text) => handleInput('message', text)}
                 />
-                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                <TouchableOpacity style={styles.button} onPress={handleSubmit} title="Submit">
                     <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
             </View>

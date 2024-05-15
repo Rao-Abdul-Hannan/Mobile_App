@@ -48,33 +48,42 @@ const View3ContactUsForm = () => {
 
 const styles = StyleSheet.create({
     formContainer: {
-        paddingHorizontal: 20,
-        paddingBottom: 20,
+        borderWidth: 2,
+        borderRadius: 5,
+        flex: 1,
+        flexDirection: 'column',
+        margin: 30,
+        shadowColor: 'black',
+        elevation: 1,
+        padding: 10
     },
     subtitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 10,
+        textAlign: 'center',
+        fontSize: 30,
+        color: 'rgb(234,179,8)',
+        padding: 20,
+        flex: 1,
     },
     input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        marginBottom: 15,
+        margin: 5,
+        padding: 10,
+        borderWidth: 2,
+        borderRadius: 7,
+        borderColor: 'white',
+        backgroundColor: 'rgb(55, 65, 81)',
     },
     submitButton: {
-        backgroundColor: '#007bff', // Adjust color as needed
-        paddingVertical: 10,
+        backgroundColor: 'rgb(234,179,8)',
+        padding: 10,
         borderRadius: 5,
         alignItems: 'center',
+        margin: 10,
+        width: 150
     },
     buttonText: {
-        color: '#fff',
-        fontSize: 16,
+        color: 'white',
         fontWeight: 'bold',
     },
-    // Add more styles as needed
 });
 
 export default View3ContactUsForm;

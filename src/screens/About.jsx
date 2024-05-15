@@ -75,13 +75,13 @@ const styles = StyleSheet.create({
         paddingTop: 10,
     },
     title: {
-        fontSize: 18,
         fontWeight: 'bold',
         color: '#FFD700', // Golden color for title
         marginBottom: 10,
+        fontSize: 17,
     },
     description: {
-        fontSize: 18,
+        fontSize: 16,
         color: 'white', // Dark gray color for description
     },
     courseContainer: {
