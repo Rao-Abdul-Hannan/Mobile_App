@@ -58,7 +58,7 @@ export default function App() {
         <Tab.Screen name='About' component={About} />
         <Tab.Screen name='Faculty' component={Faculty} />
         <Tab.Screen name='Contact' component={Contact} />
-        <Tab.Screen name='Admin' component={Admin} />
+        <Tab.Screen name='Admin Fixed' component={Admin} />
       </Tab.Navigator>
     </NavigationContainer>
   );
