@@ -8,6 +8,8 @@ import Admin from './src/screens/Admin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CoursesStack from './src/screens/CoursesStack';
 import MyHeader from './src/views/MyHeader';
+import 'react-native-gesture-handler';
+
 
 const Tab = createBottomTabNavigator();
 
