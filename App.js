@@ -7,7 +7,9 @@ import Contact from './src/screens/Contact';
 import Admin from './src/screens/Admin';
 import CoursesStack from './src/screens/CoursesStack';
 import MyHeader from './src/views/MyHeader';
-import Icon from 'react-native-vector-icons/Ionicons';
+import 'react-native-gesture-handler'
+import { Ionicons } from '@expo/vector-icons';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -30,12 +32,12 @@ export default function App() {
             paddingTop: 1,
           },
           header: ({ navigation }) => (
-            <MyHeader title='Islamic Center WorldWide'/>
+            <MyHeader title='Islamic Center WorldWide' />
           ),
           tabBarIcon: ({ color, size }) => {
             let iconName;
             if (route.name === 'Home') {
-              iconName = 'home-outline';
+              iconName = 'home';
             } else if (route.name === 'Course Stack') {
               iconName = 'book-outline';
             } else if (route.name === 'About') {
@@ -47,7 +49,7 @@ export default function App() {
             } else if (route.name === 'Admin') {
               iconName = 'person-circle-outline';
             }
-            return <Icon name={iconName} color={color} size={size} />;
+            return <Ionicons name={iconName} color={color} size={25} />;
           },
         })}
       >
@@ -61,3 +63,9 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+
+
+
+
+

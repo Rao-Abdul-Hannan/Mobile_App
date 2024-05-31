@@ -1,40 +1,59 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import View3OurFaculty from './View3OurFaculty'
 import View5OurFemaleFaculty from './View5OurFemaleFaculty'
-import azeemPhoto from '../../../assets/Images/azeem/azeem.jpeg'
-import quranImage from '../../../assets/Images/quran.jpg'
+import { LinearGradient } from 'expo-linear-gradient'
 
 const View1FacultyView = () => {
+    const [text, setText] = useState('');
+    const fullText = "Meet Our Online Faculty";
+
+    useEffect(() => {
+        let currentIndex = 0;
+        const interval = setInterval(() => {
+            if (currentIndex <= fullText.length) {
+                setText(fullText.slice(0, currentIndex));
+                currentIndex++;
+            } else {
+                setText('')
+                currentIndex = 0;
+            }
+        }, 250); // Adjust the speed by changing the interval time
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <>
-            {/* Molana Muhammad Azeem */}
-            <View style={styles.bgContainer}>
-                <View style={styles.photoContainer}>
-                    <Image
-                        source={azeemPhoto}
-                        style={styles.image}
-                    />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>Molana Muhammad Azeem</Text>
+            <LinearGradient colors={['#4b5563', '#1f2937']}>
+            <Text style={styles.header}>{text}</Text>
+                {/* Molana Muhammad Azeem */}
+                <View style={styles.bgContainer}>
+                    <View style={styles.photoContainer}>
+                        <Image
+                            source={{ uri: "https://www.islamiccenterworldwide.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fazeem.1ee79fd5.jpeg&w=384&q=75" }}
+                            style={styles.image}
+                        />
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.title}>Molana Muhammad Azeem</Text>
+                        </View>
                     </View>
+                    <View3OurFaculty />
                 </View>
-                <View3OurFaculty />
-            </View>
 
-            {/* female faculty */}
-            <View style={[styles.bgContainer, styles.femaleBg]}>
-                <View style={styles.photoContainer}>
-                    <Image
-                        source={quranImage}
-                        style={styles.image}
-                    />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>Islamic Center WoldWide</Text>
+                {/* female faculty */}
+                <View style={[styles.bgContainer, styles.femaleBg]}>
+                    <View style={styles.photoContainer}>
+                        <Image
+                            source={{ uri: "https://www.islamiccenterworldwide.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fquran.5bda0a5f.jpg&w=640&q=75" }}
+                            style={styles.image}
+                        />
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.title}>Islamic Center WoldWide</Text>
+                        </View>
                     </View>
+                    <View5OurFemaleFaculty />
                 </View>
-                <View5OurFemaleFaculty />
-            </View>
+            </LinearGradient>
         </>
     )
 }
@@ -42,13 +61,22 @@ const View1FacultyView = () => {
 export default View1FacultyView
 
 const styles = StyleSheet.create({
+    header: {
+        textAlign: "center",
+        margin: 10,
+        fontWeight: "bold",
+        fontSize: 24,
+        color: 'rgb(234,179,8)',
+    },
     bgContainer: {
-        backgroundColor: '#1E90FF',
         paddingVertical: 16,
         flexDirection: 'column',
-    },
-    femaleBg: {
-        backgroundColor: '#FF69B4',
+        borderColor: 'black',
+        borderWidth: 2,
+        borderRadius: 5,
+        margin: 20,
+        shadowColor: 'black',
+        elevation: 1,
     },
     photoContainer: {
         flex: 1,
@@ -66,16 +94,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFF00',
-    },
-    textContainer: {
-        flex: 1,
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-    },
-    text: {
-        fontSize: 16,
-        lineHeight: 24,
-        color: '#333333',
+        color: 'rgb(234,179,8)',
     },
 })
