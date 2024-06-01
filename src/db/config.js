@@ -15,5 +15,5 @@ const configuration = {
 const app = initializeApp(configuration);
 
 const db = getFirestore(app);
-export { app, db};
+export { app, db };
 

@@ -4,11 +4,11 @@ import Home from './src/screens/Home';
 import About from './src/screens/About';
 import Faculty from './src/screens/Faculty';
 import Contact from './src/screens/Contact';
-import Admin from './src/screens/Admin';
 import CoursesStack from './src/screens/CoursesStack';
 import MyHeader from './src/views/MyHeader';
 import 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons';
+import UserProfile from './src/screens/UserProfile';
 
 
 const Tab = createBottomTabNavigator();
@@ -46,7 +46,7 @@ export default function App() {
               iconName = 'people-outline';
             } else if (route.name === 'Contact') {
               iconName = 'call-outline';
-            } else if (route.name === 'Admin') {
+            } else if (route.name === 'Profile') {
               iconName = 'person-circle-outline';
             }
             return <Ionicons name={iconName} color={color} size={25} />;
@@ -58,14 +58,8 @@ export default function App() {
         <Tab.Screen name='About' component={About} />
         <Tab.Screen name='Faculty' component={Faculty} />
         <Tab.Screen name='Contact' component={Contact} />
-        <Tab.Screen name='Admin' component={Admin} />
+        <Tab.Screen name='Profile' component={UserProfile} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-
-
-
-
-

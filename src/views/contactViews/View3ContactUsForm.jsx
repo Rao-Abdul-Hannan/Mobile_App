@@ -1,18 +1,28 @@
-// This form component will need a bit more adjustments and implementation of form input components in React Native.
-// You can use TextInput, TouchableOpacity, and other relevant components for form input and submission in React Native.
-// Here's a simplified version for illustration purposes:
-
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import PhoneInput from 'react-native-phone-number-input';
 
 const View3ContactUsForm = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
+    const [contactUs, setContactUs] = useState({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        message: "",
+    })
+
+    const handleInput = (key, value) => {
+        setContactUs({...contactUs, [key]: value})
+    }
 
     const handleSubmit = () => {
         // Handle form submission logic here
-        console.log('Form submitted:', { name, email, message });
+        console.log('Form submitted:',  contactUs );
+        setContactUs({
+            name: "",
+            email: "",
+            phoneNumber: "",
+            message: "",
+        })
     };
 
     return (
@@ -22,21 +32,38 @@ const View3ContactUsForm = () => {
                 <TextInput
                     style={styles.input}
                     placeholder="Name"
-                    value={name}
-                    onChangeText={setName}
+                    value={contactUs.name}
+                    onChangeText={(text) => handleInput('name', text)}
+                    autoFocus={true}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
-                    value={email}
-                    onChangeText={setEmail}
+                    value={contactUs.email}
+                    onChangeText={(text) => handleInput('email', text)}
+                />
+                <PhoneInput
+                    defaultCode="PK"
+                    value={contactUs.phoneNumber}
+                    onChangeText={(number) => handleInput('phoneNumber', number)}
+                    containerStyle={{ margin: 5, width: '97%', borderColor: 'white', borderWidth: 2, borderRadius: 7 }}
+                    textContainerStyle={{
+                        backgroundColor: 'rgb(55, 65, 81)',
+                        borderLeftColor: 'rgb(0,0,0)',
+                        borderLeftWidth: 1,
+                    }}
+                    textStyle={{
+                        color: '#CBD5E0',
+                    }}
+                    flagButtonStyle={{ backgroundColor: 'rgb(55, 65, 81)' }}
+                    textInputProps={{ keyboardType: 'phone-pad' }}
                 />
                 <TextInput
                     style={[styles.input, { height: 100 }]}
                     placeholder="Your Query / Message"
                     multiline
-                    value={message}
-                    onChangeText={setMessage}
+                    value={contactUs.message}
+                    onChangeText={(text) => handleInput('message', text)}
                 />
                 <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
                     <Text style={styles.buttonText}>Submit</Text>

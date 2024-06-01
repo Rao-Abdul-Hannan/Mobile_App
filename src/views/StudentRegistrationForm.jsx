@@ -63,6 +63,7 @@ const StudentRegistrationForm = () => {
                     placeholderTextColor="black"
                     value={studentRegistration.name}
                     onChangeText={(text) => handleInput('name', text)}
+                    autoFocus={true}
                 />
                 <TextInput
                     style={styles.input}
